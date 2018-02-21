@@ -28,7 +28,7 @@ require_once 'locallib.php';
 require_once 'filters/lib.php';
 require_once 'filters/filter_forms.php';
 
-$sort           = optional_param('sort', 'u.firstname', PARAM_ALPHANUM);
+$sort           = optional_param('sort', 'u.firstname', PARAM_RAW);
 $dir            = optional_param('dir', 'ASC', PARAM_ALPHA);
 $page           = optional_param('page', 0, PARAM_INT);
 $perpage        = optional_param('perpage', 30, PARAM_INT);
@@ -151,7 +151,7 @@ if ($extrasql !== '') {
     echo $OUTPUT->heading("$userbadgescount ".get_string('users'));
 }
 
-echo $OUTPUT->paging_bar($userbadgescount, $page, $perpage, $baseurl);
+echo $OUTPUT->paging_bar($userbadgessearchcount, $page, $perpage, $baseurl);
 
 flush();
 
@@ -211,7 +211,7 @@ if (!empty($table)) {
     echo html_writer::start_tag('div', array('class'=>'no-overflow'));
     echo html_writer::table($table);
     echo html_writer::end_tag('div');
-    echo $OUTPUT->paging_bar($userbadgescount, $page, $perpage, $baseurl);
+    echo $OUTPUT->paging_bar($userbadgessearchcount, $page, $perpage, $baseurl);
 
     // Download form.
     echo $OUTPUT->heading(get_string('download', 'admin'));
